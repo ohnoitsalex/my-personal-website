@@ -4,7 +4,7 @@ export const personalInfo = {
   degrees: "M.Sc & B.Eng",
   tagline: "Trilingual software engineer focused on cybersecurity, distributed and full-stack systems, and the design of scalable, mission-critical software. Equally driven by building reliable systems and pushing limits outdoors through running, climbing, and endurance sports.",
   email: "alexonofrei@hotmail.com",
-  contactEmail: "hello@alexanderonofrei.com",
+  contactEmail: "alexonofrei@hotmail.com",
   linkedin: "https://www.linkedin.com/in/alexander-onofrei-60885b179"
 };
 
