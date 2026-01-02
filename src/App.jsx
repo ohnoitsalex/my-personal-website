@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { ArrowDown, Mail, Linkedin, ExternalLink, Code, BookOpen, Briefcase, Wrench, Menu, X, Award, Camera } from 'lucide-react';
+import { Analytics } from '@vercel/analytics/react';
 
 export default function AlexanderOnofrei() {
   const [scrolled, setScrolled] = useState(false);
@@ -263,14 +264,11 @@ export default function AlexanderOnofrei() {
               <Wrench className="text-white" size={32} />
             </div>
           </div>
-          <h2 className="text-5xl md:text-6xl font-bold text-center mb-4">
+          <h2 className="text-5xl md:text-6xl font-bold text-center mb-16">
             <span className="bg-gradient-to-r from-white via-[#113F7C]/40 to-white bg-clip-text text-transparent">
               Technical Expertise
             </span>
           </h2>
-          <p className="text-center text-slate-400 mb-16 max-w-2xl mx-auto">
-            A comprehensive toolkit built through years of hands-on experience
-          </p>
           <div className="space-y-8">
             {[
               { title: 'Languages', items: ['Java', 'Python', 'C++', 'C', 'JavaScript', 'SQL'] },
@@ -335,14 +333,11 @@ export default function AlexanderOnofrei() {
               <Briefcase className="text-white" size={32} />
             </div>
           </div>
-          <h2 className="text-5xl md:text-6xl font-bold text-center mb-4">
+          <h2 className="text-5xl md:text-6xl font-bold text-center mb-16">
             <span className="bg-gradient-to-r from-white via-[#8A3428]/40 to-white bg-clip-text text-transparent">
               Work Experience
             </span>
           </h2>
-          <p className="text-center text-slate-400 mb-16 max-w-2xl mx-auto">
-            Building impactful solutions across cybersecurity and mission-critical systems
-          </p>
           <div className="space-y-8">
             {[
               {
@@ -416,14 +411,11 @@ export default function AlexanderOnofrei() {
               <BookOpen className="text-white" size={32} />
             </div>
           </div>
-          <h2 className="text-5xl md:text-6xl font-bold text-center mb-4">
+          <h2 className="text-5xl md:text-6xl font-bold text-center mb-16">
             <span className="bg-gradient-to-r from-white via-[#113F7C]/40 to-white bg-clip-text text-transparent">
               Publications
             </span>
           </h2>
-          <p className="text-center text-slate-400 mb-16 max-w-2xl mx-auto">
-            Research contributions in cryptography and software testing
-          </p>
           <div className="space-y-8">
             <div className="group relative bg-gradient-to-br from-[#113F7C]/25 via-[#113F7C]/30 to-[#113F7C]/20 backdrop-blur-xl rounded-3xl p-8 shadow-xl border border-[#113F7C]/30 hover:border-[#113F7C]/50 hover:bg-[#113F7C]/30 transition-all duration-500 hover:-translate-y-2 overflow-hidden">
               <div className="absolute top-0 left-0 w-2 h-full bg-gradient-to-b from-[#113F7C] to-[#113F7C]/80 rounded-l-3xl"></div>
@@ -533,14 +525,11 @@ export default function AlexanderOnofrei() {
               <Code className="text-white" size={32} />
             </div>
           </div>
-          <h2 className="text-5xl md:text-6xl font-bold text-center mb-4">
+          <h2 className="text-5xl md:text-6xl font-bold text-center mb-16">
             <span className="bg-gradient-to-r from-white via-[#113F7C]/40 to-white bg-clip-text text-transparent">
               Featured Projects
             </span>
           </h2>
-          <p className="text-center text-slate-400 mb-16 max-w-2xl mx-auto">
-            Innovative solutions in cryptography, embedded systems, and beyond
-          </p>
           <div className="space-y-8 max-w-4xl mx-auto">
             <div className="group relative bg-gradient-to-br from-[#113F7C]/25 via-[#113F7C]/20 to-[#113F7C]/30 backdrop-blur-xl rounded-3xl p-10 shadow-2xl border border-[#113F7C]/30 hover:border-[#113F7C]/50 hover:bg-[#113F7C]/30 transition-all duration-500 hover:-translate-y-2 overflow-hidden">
               <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-[#113F7C]/10 to-[#113F7C]/10 rounded-full blur-3xl group-hover:scale-150 transition-transform duration-500"></div>
@@ -889,6 +878,7 @@ export default function AlexanderOnofrei() {
           animation: subtle-zoom 30s ease-in-out infinite;
         }
       `}</style>
+      <Analytics />
     </div>
   );
 }
