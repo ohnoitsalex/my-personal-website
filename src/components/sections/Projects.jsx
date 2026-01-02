@@ -21,41 +21,44 @@ export const Projects = () => {
         </h2>
         <div className="space-y-8 max-w-4xl mx-auto">
           {projects.map((project, idx) => (
-            <div key={idx} className={`group relative bg-gradient-to-br ${idx % 2 === 0 ? 'from-[#113F7C]/25 via-[#113F7C]/20 to-[#113F7C]/30' : 'from-[#113F7C]/20 via-[#113F7C]/25 to-[#113F7C]/30'} backdrop-blur-xl rounded-3xl p-10 shadow-2xl border border-[#113F7C]/30 hover:border-[#113F7C]/50 hover:bg-[#113F7C]/30 transition-all duration-500 hover:-translate-y-2 overflow-hidden`}>
-              <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-[#113F7C]/10 to-[#113F7C]/10 rounded-full blur-3xl group-hover:scale-150 transition-transform duration-500"></div>
+            <div key={idx} className="group bg-gradient-to-br from-[#113F7C]/25 via-[#113F7C]/30 to-[#113F7C]/20 backdrop-blur-xl rounded-3xl p-8 shadow-xl border border-[#113F7C]/30 hover:border-[#113F7C]/50 hover:bg-[#113F7C]/30 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-[#113F7C]/20">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="h-1.5 w-16 bg-gradient-to-r from-[#113F7C] to-[#113F7C]/80 rounded-full shadow-lg"></div>
+                <h3 className="text-2xl font-semibold bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">{project.title}</h3>
+              </div>
 
-              <div className="relative">
-                <div className="inline-block px-4 py-1.5 bg-[#113F7C]/20 text-white rounded-full text-xs font-bold mb-4 border border-[#113F7C]/30">
+              <div className="mb-4">
+                <span className="px-4 py-1.5 bg-[#113F7C]/20 text-white rounded-full text-xs font-semibold border border-[#113F7C]/30">
                   {project.badge}
-                </div>
-                <h3 className="text-3xl font-bold mb-2 text-white group-hover:text-white/90 transition-colors duration-300">
-                  {project.title}
-                </h3>
-                {project.subtitle && (
-                  <p className="text-sm text-white mb-4 font-semibold">
-                    {project.link ? (
-                      <a href={project.link} target="_blank" rel="noopener noreferrer" className="hover:text-[#113F7C] transition-colors duration-300 inline-flex items-center gap-2">
-                        {project.subtitle} <ExternalLink size={14} />
-                      </a>
-                    ) : (
-                      project.subtitle
-                    )}
-                  </p>
-                )}
-                <p className="text-slate-400 mb-6 text-base leading-relaxed">
-                  {project.description}
+                </span>
+              </div>
+
+              {project.subtitle && (
+                <p className="text-sm text-slate-300 mb-4 font-medium">
+                  {project.link ? (
+                    <a href={project.link} target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors duration-300 inline-flex items-center gap-2">
+                      {project.subtitle} <ExternalLink size={14} />
+                    </a>
+                  ) : (
+                    project.subtitle
+                  )}
                 </p>
-                <div className="flex flex-wrap gap-2">
-                  {project.technologies.map((tech, i) => (
-                    <span
-                      key={tech}
-                      className={`px-4 py-2 bg-white/5 rounded-xl text-sm font-medium text-white border border-[#113F7C]/20 hover:bg-gradient-to-br ${idx % 2 === 0 ? 'hover:from-[#113F7C] hover:to-[#113F7C]/80' : 'hover:from-[#113F7C]/80 hover:to-[#113F7C]'} hover:text-white hover:border-transparent transition-all duration-300 hover:scale-110 hover:shadow-lg cursor-pointer`}
-                      style={{animationDelay: `${i * 100}ms`}}
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
+              )}
+
+              <p className="text-slate-300 mb-6 leading-relaxed font-medium">
+                {project.description}
+              </p>
+
+              <div className="flex flex-wrap gap-3">
+                {project.technologies.map((tech, i) => (
+                  <span
+                    key={tech}
+                    className="px-5 py-2.5 bg-slate-700/50 rounded-xl text-sm font-medium text-slate-200 hover:bg-gradient-to-br hover:from-[#113F7C]/90 hover:to-[#113F7C]/70 hover:text-white transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-[#113F7C]/50 border border-slate-600/40 hover:border-[#113F7C]/60 cursor-pointer backdrop-blur-sm"
+                    style={{animationDelay: `${i * 50}ms`}}
+                  >
+                    {tech}
+                  </span>
+                ))}
               </div>
             </div>
           ))}

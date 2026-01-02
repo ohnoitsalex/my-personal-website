@@ -22,32 +22,41 @@ export const Publications = () => {
         </h2>
         <div className="space-y-8">
           {publications.map((pub, idx) => (
-            <div key={idx} className={`group relative bg-gradient-to-br ${idx === 0 ? 'from-[#113F7C]/25 via-[#113F7C]/30 to-[#113F7C]/20' : 'from-[#113F7C]/25 via-[#113F7C]/20 to-[#113F7C]/25'} backdrop-blur-xl rounded-3xl p-8 shadow-xl border border-[#113F7C]/30 hover:border-[#113F7C]/50 hover:bg-[#113F7C]/30 transition-all duration-500 hover:-translate-y-2 overflow-hidden`}>
-              <div className={`absolute top-0 left-0 w-2 h-full bg-gradient-to-b ${idx === 0 ? 'from-[#113F7C] to-[#113F7C]/80' : 'from-[#113F7C]/80 to-[#113F7C]'} rounded-l-3xl`}></div>
-
-              <div className="absolute top-4 right-4 px-3 py-1 bg-[#113F7C]/20 text-white rounded-full text-xs font-semibold border border-[#113F7C]/30">
-                {pub.type}
+            <div key={idx} className="group bg-gradient-to-br from-[#113F7C]/25 via-[#113F7C]/30 to-[#113F7C]/20 backdrop-blur-xl rounded-3xl p-8 shadow-xl border border-[#113F7C]/30 hover:border-[#113F7C]/50 hover:bg-[#113F7C]/30 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-[#113F7C]/20">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="h-1.5 w-16 bg-gradient-to-r from-[#113F7C] to-[#113F7C]/80 rounded-full shadow-lg"></div>
+                <h3 className="text-2xl font-semibold bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">{pub.title}</h3>
               </div>
 
-              <h3 className="text-2xl font-bold mb-3 text-white pr-32 group-hover:text-white/90 transition-colors duration-300">
-                {pub.title}
-              </h3>
-              <p className="text-slate-300 mb-4">
-                <span className="font-semibold text-white">{pub.authors}</span>
-              </p>
-              <div className="flex flex-wrap items-center gap-3 text-sm mb-4">
-                <span className="px-4 py-2 bg-white/5 border border-[#113F7C]/30 rounded-xl font-medium text-white">{pub.venue}</span>
-                {pub.location && <span className="text-slate-400">{pub.location}</span>}
-                <span className="text-slate-400">{pub.date}</span>
+              <div className="mb-4">
+                <div className="flex flex-wrap items-center gap-2 text-sm">
+                  <span className="px-3 py-1 bg-[#113F7C]/20 text-white rounded-full text-xs font-semibold border border-[#113F7C]/30">
+                    {pub.type}
+                  </span>
+                  <span className="text-slate-400">•</span>
+                  <span className="text-slate-300 font-medium">{pub.authors}</span>
+                  <span className="text-slate-400">•</span>
+                  <span className="text-slate-300">{pub.venue}</span>
+                  {pub.location && (
+                    <>
+                      <span className="text-slate-400">•</span>
+                      <span className="text-slate-400">{pub.location}</span>
+                    </>
+                  )}
+                </div>
               </div>
-              <p className="text-slate-400 leading-relaxed mb-6">
+
+              <div className="text-sm text-slate-400 mb-4">{pub.date}</div>
+
+              <p className="text-slate-300 leading-relaxed mb-6 font-medium">
                 {pub.description}
               </p>
+
               <a
                 href={pub.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r ${idx === 0 ? 'from-[#113F7C] to-[#113F7C]/80' : 'from-[#113F7C]/80 to-[#113F7C]'} text-white font-semibold rounded-xl hover:gap-4 hover:shadow-lg hover:shadow-[#113F7C]/50 transition-all duration-300`}
+                className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-[#113F7C] to-[#113F7C]/80 text-white font-semibold rounded-xl hover:gap-4 hover:shadow-lg hover:shadow-[#113F7C]/50 transition-all duration-300 hover:scale-105"
               >
                 {idx === 0 ? 'Read Thesis' : 'Read Paper'} <ExternalLink size={16} />
               </a>
@@ -65,12 +74,15 @@ export const Publications = () => {
               Education
             </span>
           </h2>
-          <div className="space-y-6">
+          <div className="space-y-8">
             {education.map((edu, idx) => (
-              <div key={idx} className="group bg-gradient-to-br from-[#8A3428]/20 via-[#8A3428]/15 to-slate-800/40 backdrop-blur-xl rounded-3xl p-6 shadow-xl border-l-4 border-[#8A3428] hover:bg-[#8A3428]/20 hover:-translate-y-1 transition-all duration-300">
-                <h3 className="text-2xl font-bold text-white">{edu.degree}</h3>
-                <p className="text-slate-300 mt-2 font-medium">{edu.field}</p>
-                {edu.school && <p className="text-slate-400 text-sm mt-2">{edu.school}</p>}
+              <div key={idx} className="group bg-gradient-to-br from-[#8A3428]/25 via-[#8A3428]/30 to-[#8A3428]/20 backdrop-blur-xl rounded-3xl p-8 shadow-xl border border-[#8A3428]/30 hover:border-[#8A3428]/50 hover:bg-[#8A3428]/30 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-[#8A3428]/20">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="h-1.5 w-16 bg-gradient-to-r from-[#8A3428] to-[#8A3428]/80 rounded-full shadow-lg"></div>
+                  <h3 className="text-2xl font-semibold bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">{edu.degree}</h3>
+                </div>
+                <p className="text-slate-300 font-medium mb-2">{edu.field}</p>
+                {edu.school && <p className="text-slate-400 text-sm mb-4">{edu.school}</p>}
                 {edu.honors && (
                   <div className="mt-3 inline-flex items-center gap-2 px-4 py-2 bg-yellow-500/10 border border-yellow-500/30 rounded-xl">
                     <Award size={16} className="text-yellow-400" />
