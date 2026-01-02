@@ -5,9 +5,9 @@ export const Navigation = ({ scrolled, activeSection, scrollToSection }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navItems = [
-    { id: 'about', label: 'About' },
+    { id: 'about', label: 'Technical Expertise' },
     { id: 'experience', label: 'Experience' },
-    { id: 'expertise', label: 'Expertise' },
+    { id: 'expertise', label: 'Publications' },
     { id: 'projects', label: 'Projects' },
     { id: 'contact', label: 'Contact' }
   ];
