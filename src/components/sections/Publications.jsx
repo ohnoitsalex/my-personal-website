@@ -1,8 +1,57 @@
 import { BookOpen, Award, ExternalLink } from 'lucide-react';
 import { SectionIcon } from '../ui/SectionIcon';
 import { publications, education } from '../../data/content';
+import { useRef, useEffect, useState } from 'react';
 
 export const Publications = () => {
+  const [visiblePubs, setVisiblePubs] = useState([]);
+  const [visibleEdu, setVisibleEdu] = useState([]);
+  const pubRefs = useRef([]);
+  const eduRefs = useRef([]);
+
+  useEffect(() => {
+    const pubObservers = pubRefs.current.map((box, index) => {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              setTimeout(() => {
+                setVisiblePubs((prev) => [...new Set([...prev, index])]);
+              }, index * 100);
+            }
+          });
+        },
+        { threshold: 0.1 }
+      );
+
+      if (box) observer.observe(box);
+      return observer;
+    });
+
+    const eduObservers = eduRefs.current.map((box, index) => {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              setTimeout(() => {
+                setVisibleEdu((prev) => [...new Set([...prev, index])]);
+              }, index * 100);
+            }
+          });
+        },
+        { threshold: 0.1 }
+      );
+
+      if (box) observer.observe(box);
+      return observer;
+    });
+
+    return () => {
+      pubObservers.forEach((observer) => observer.disconnect());
+      eduObservers.forEach((observer) => observer.disconnect());
+    };
+  }, []);
+
   return (
     <section id="expertise" className="py-16 px-8 relative overflow-hidden z-20">
       {/* Background elements - dark blue tones */}
@@ -22,7 +71,15 @@ export const Publications = () => {
         </h2>
         <div className="space-y-8">
           {publications.map((pub, idx) => (
-            <div key={idx} className="group bg-gradient-to-br from-[#113F7C]/25 via-[#113F7C]/30 to-[#113F7C]/20 backdrop-blur-xl rounded-3xl p-8 shadow-xl border border-[#113F7C]/30 hover:border-[#113F7C]/50 hover:bg-[#113F7C]/30 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-[#113F7C]/20">
+            <div
+              key={idx}
+              ref={(el) => (pubRefs.current[idx] = el)}
+              className={`group bg-gradient-to-br from-[#113F7C]/25 via-[#113F7C]/30 to-[#113F7C]/20 backdrop-blur-xl rounded-3xl p-8 shadow-xl border border-[#113F7C]/30 hover:border-[#113F7C]/50 hover:bg-[#113F7C]/30 transition-all duration-700 ease-out hover:-translate-y-2 hover:shadow-2xl hover:shadow-[#113F7C]/20 ${
+                visiblePubs.includes(idx)
+                  ? 'opacity-100 translate-x-0'
+                  : `opacity-0 ${idx % 2 === 0 ? '-translate-x-16' : 'translate-x-16'}`
+              }`}
+            >
               <div className="flex items-center gap-3 mb-6">
                 <div className="h-1.5 w-16 bg-gradient-to-r from-[#113F7C] to-[#113F7C]/80 rounded-full shadow-lg"></div>
                 <h3 className="text-2xl font-semibold bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">{pub.title}</h3>
@@ -76,7 +133,15 @@ export const Publications = () => {
           </h2>
           <div className="space-y-8">
             {education.map((edu, idx) => (
-              <div key={idx} className="group bg-gradient-to-br from-[#8A3428]/25 via-[#8A3428]/30 to-[#8A3428]/20 backdrop-blur-xl rounded-3xl p-8 shadow-xl border border-[#8A3428]/30 hover:border-[#8A3428]/50 hover:bg-[#8A3428]/30 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-[#8A3428]/20">
+              <div
+                key={idx}
+                ref={(el) => (eduRefs.current[idx] = el)}
+                className={`group bg-gradient-to-br from-[#8A3428]/25 via-[#8A3428]/30 to-[#8A3428]/20 backdrop-blur-xl rounded-3xl p-8 shadow-xl border border-[#8A3428]/30 hover:border-[#8A3428]/50 hover:bg-[#8A3428]/30 transition-all duration-700 ease-out hover:-translate-y-2 hover:shadow-2xl hover:shadow-[#8A3428]/20 ${
+                  visibleEdu.includes(idx)
+                    ? 'opacity-100 translate-x-0'
+                    : `opacity-0 ${idx % 2 === 0 ? '-translate-x-16' : 'translate-x-16'}`
+                }`}
+              >
                 <div className="flex items-center gap-3 mb-6">
                   <div className="h-1.5 w-16 bg-gradient-to-r from-[#8A3428] to-[#8A3428]/80 rounded-full shadow-lg"></div>
                   <h3 className="text-2xl font-semibold bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">{edu.degree}</h3>

@@ -1,12 +1,40 @@
 import { Wrench } from 'lucide-react';
 import { SectionIcon } from '../ui/SectionIcon';
 import { skills } from '../../data/content';
+import { useRef, useEffect, useState } from 'react';
 
 export const TechnicalExpertise = () => {
+  const [visibleBoxes, setVisibleBoxes] = useState([]);
+  const boxRefs = useRef([]);
+
   const categories = [
     { title: 'Languages', items: skills.languages },
     { title: 'Frameworks & Tools', items: skills.frameworks }
   ];
+
+  useEffect(() => {
+    const observers = boxRefs.current.map((box, index) => {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              setTimeout(() => {
+                setVisibleBoxes((prev) => [...new Set([...prev, index])]);
+              }, index * 100);
+            }
+          });
+        },
+        { threshold: 0.1 }
+      );
+
+      if (box) observer.observe(box);
+      return observer;
+    });
+
+    return () => {
+      observers.forEach((observer) => observer.disconnect());
+    };
+  }, []);
 
   return (
     <section id="about" className="py-16 px-8 relative overflow-hidden z-20">
@@ -27,7 +55,15 @@ export const TechnicalExpertise = () => {
         </h2>
         <div className="space-y-8">
           {categories.map((category, idx) => (
-            <div key={idx} className="group bg-gradient-to-br from-[#113F7C]/25 via-[#113F7C]/30 to-[#113F7C]/20 backdrop-blur-xl rounded-3xl p-8 shadow-xl border border-[#113F7C]/30 hover:border-[#113F7C]/50 hover:bg-[#113F7C]/30 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-[#113F7C]/20">
+            <div
+              key={idx}
+              ref={(el) => (boxRefs.current[idx] = el)}
+              className={`group bg-gradient-to-br from-[#113F7C]/25 via-[#113F7C]/30 to-[#113F7C]/20 backdrop-blur-xl rounded-3xl p-8 shadow-xl border border-[#113F7C]/30 hover:border-[#113F7C]/50 hover:bg-[#113F7C]/30 transition-all duration-700 ease-out hover:-translate-y-2 hover:shadow-2xl hover:shadow-[#113F7C]/20 ${
+                visibleBoxes.includes(idx)
+                  ? 'opacity-100 translate-x-0'
+                  : `opacity-0 ${idx % 2 === 0 ? '-translate-x-16' : 'translate-x-16'}`
+              }`}
+            >
               <div className="flex items-center gap-3 mb-6">
                 <div className="h-1.5 w-16 bg-gradient-to-r from-[#113F7C] to-[#113F7C]/80 rounded-full shadow-lg"></div>
                 <h3 className="text-2xl font-semibold bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">{category.title}</h3>
@@ -45,7 +81,14 @@ export const TechnicalExpertise = () => {
               </div>
             </div>
           ))}
-          <div className="group bg-gradient-to-br from-[#113F7C]/25 via-[#113F7C]/30 to-[#113F7C]/20 backdrop-blur-xl rounded-3xl p-8 shadow-xl border border-[#113F7C]/30 hover:border-[#113F7C]/50 hover:bg-[#113F7C]/30 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-[#113F7C]/20">
+          <div
+            ref={(el) => (boxRefs.current[2] = el)}
+            className={`group bg-gradient-to-br from-[#113F7C]/25 via-[#113F7C]/30 to-[#113F7C]/20 backdrop-blur-xl rounded-3xl p-8 shadow-xl border border-[#113F7C]/30 hover:border-[#113F7C]/50 hover:bg-[#113F7C]/30 transition-all duration-700 ease-out hover:-translate-y-2 hover:shadow-2xl hover:shadow-[#113F7C]/20 ${
+              visibleBoxes.includes(2)
+                ? 'opacity-100 translate-x-0'
+                : 'opacity-0 -translate-x-16'
+            }`}
+          >
             <div className="flex items-center gap-3 mb-6">
               <div className="h-1.5 w-16 bg-gradient-to-r from-[#113F7C] to-[#113F7C]/80 rounded-full shadow-lg"></div>
               <h3 className="text-2xl font-semibold bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">Specializations</h3>
