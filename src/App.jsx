@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { ArrowDown, Mail, Linkedin, ExternalLink, Code, BookOpen, Briefcase, Wrench, Menu, X, Award, Zap, Target, Camera } from 'lucide-react';
+import { useState, useEffect, useRef } from 'react';
+import { ArrowDown, Mail, Linkedin, ExternalLink, Code, BookOpen, Briefcase, Wrench, Menu, X, Award, Camera } from 'lucide-react';
 
 export default function AlexanderOnofrei() {
   const [scrolled, setScrolled] = useState(false);
@@ -9,6 +9,8 @@ export default function AlexanderOnofrei() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isVisible, setIsVisible] = useState({});
   const [scrollY, setScrollY] = useState(0);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [lightboxImage, setLightboxImage] = useState('');
   const observerRef = useRef(null);
 
   useEffect(() => {
@@ -62,6 +64,15 @@ export default function AlexanderOnofrei() {
 
   const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % 8);
   const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + 8) % 8);
+
+  const openLightbox = (imageSrc) => {
+    setLightboxImage(imageSrc);
+    setLightboxOpen(true);
+  };
+
+  const closeLightbox = () => {
+    setLightboxOpen(false);
+  };
 
   return (
     <div className="bg-black text-white overflow-x-hidden">
@@ -344,7 +355,7 @@ export default function AlexanderOnofrei() {
               },
               {
                 title: "Software Developer & Security System Engineer", company: "MDA Space", period: "Sept 2023 - Mar 2025", location: "Ottawa, ON",
-                points: ["Designed secure software systems with security architecture aligned with OWASP, GDPR, and NIST standards", "Managed client requirements and collaborated with DevOps teams", "Developed software components for commercial satellite imagery systems (CSIAPS)", "Deployed and managed Tomcat, Wildfly and GitLab servers"]
+                points: ["Designed secure software systems with security architecture aligned with OWASP, GDPR, and NIST standards", "Managed client requirements and collaborated with DevOps teams", "Developed software components for commercial satellite imagery systems (CSIAPS) using Java (Springboot)", "Deployed and managed Tomcat, Wildfly and GitLab servers"]
               },
               {
                 title: "Software Engineer", company: "Motorola Solutions", period: "Jan 2021 - Aug 2022", location: "Gatineau, QC",
@@ -672,87 +683,47 @@ export default function AlexanderOnofrei() {
           <div className="space-y-6">
             {/* Row 1: Large featured + vertical */}
             <div className="grid grid-cols-12 gap-6">
-              <div className="col-span-12 md:col-span-8 group relative overflow-hidden rounded-3xl shadow-2xl hover:shadow-[#113F7C]/20 transition-all duration-700 hover:scale-[1.01] border border-[#113F7C]/20 hover:border-[#113F7C]/30">
-                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200" alt="Mountain Vista" className="w-full h-[600px] object-cover transition-all duration-1000 group-hover:scale-110 group-hover:brightness-110" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500">
-                  <div className="absolute bottom-0 left-0 right-0 p-10 transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500">
-                    <p className="text-white text-3xl font-light mb-2">Mountain Vista</p>
-                    <p className="text-slate-300 text-sm font-light">Golden hour illuminating the peaks</p>
-                  </div>
-                </div>
-                <div className="absolute top-6 left-6 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-500 transform -translate-x-4 group-hover:translate-x-0 border border-white/20">
-                  <span className="text-white text-xs font-medium">FEATURED</span>
-                </div>
+              <div className="col-span-12 md:col-span-8 group relative overflow-hidden rounded-3xl shadow-2xl hover:shadow-[#113F7C]/20 transition-all duration-700 hover:scale-[1.01] border border-[#113F7C]/20 hover:border-[#113F7C]/30 cursor-pointer" onClick={() => openLightbox("/images/photography/_DSC2608.JPG")}>
+                <img src="/images/photography/_DSC2608.JPG" alt="Photography" className="w-full h-[600px] object-cover transition-all duration-1000 group-hover:scale-110 group-hover:brightness-110" />
               </div>
-              <div className="col-span-12 md:col-span-4 group relative overflow-hidden rounded-3xl shadow-2xl hover:shadow-[#113F7C]/20 transition-all duration-700 hover:scale-[1.01] border border-[#113F7C]/20 hover:border-[#113F7C]/30">
-                <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=600" alt="Forest Path" className="w-full h-[600px] object-cover transition-all duration-1000 group-hover:scale-110 group-hover:brightness-110" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500">
-                  <div className="absolute bottom-0 left-0 right-0 p-8 transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500">
-                    <p className="text-white text-2xl font-light mb-2">Forest Path</p>
-                    <p className="text-slate-300 text-sm font-light">Into the wilderness</p>
-                  </div>
-                </div>
+              <div className="col-span-12 md:col-span-4 group relative overflow-hidden rounded-3xl shadow-2xl hover:shadow-[#113F7C]/20 transition-all duration-700 hover:scale-[1.01] border border-[#113F7C]/20 hover:border-[#113F7C]/30 cursor-pointer" onClick={() => openLightbox("/images/photography/_DSC2213.JPG")}>
+                <img src="/images/photography/_DSC2213.JPG" alt="Photography" className="w-full h-[600px] object-cover transition-all duration-1000 group-hover:scale-110 group-hover:brightness-110" />
               </div>
             </div>
 
             {/* Row 2: Three equal columns */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {[
-                { url: "https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=600", caption: "Sunset Lake", desc: "Reflections at dusk" },
-                { url: "https://images.unsplash.com/photo-1426604966848-d7adac402bff?w=600", caption: "Northern Lights", desc: "Aurora borealis magic" },
-                { url: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=600", caption: "Alpine Peak", desc: "Summit views" }
+                "/images/photography/_DSC2271.JPG",
+                "/images/photography/_DSC2368.JPG",
+                "/images/photography/_DSC2844.JPG"
               ].map((photo, idx) => (
-                <div key={idx} className="group relative overflow-hidden rounded-3xl shadow-2xl hover:shadow-[#113F7C]/20 transition-all duration-700 hover:scale-[1.03] hover:-translate-y-2 border border-[#113F7C]/20 hover:border-[#113F7C]/30">
-                  <img src={photo.url} alt={photo.caption} className="w-full h-96 object-cover transition-all duration-1000 group-hover:scale-110 group-hover:brightness-110" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500">
-                    <div className="absolute bottom-0 left-0 right-0 p-6 transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500">
-                      <p className="text-white text-xl font-light mb-1">{photo.caption}</p>
-                      <p className="text-slate-300 text-xs font-light">{photo.desc}</p>
-                    </div>
-                  </div>
-                  <div className="absolute inset-0 border-4 border-white/0 group-hover:border-white/20 transition-all duration-500 rounded-3xl"></div>
+                <div key={idx} className="group relative overflow-hidden rounded-3xl shadow-2xl hover:shadow-[#113F7C]/20 transition-all duration-700 hover:scale-[1.03] hover:-translate-y-2 border border-[#113F7C]/20 hover:border-[#113F7C]/30 cursor-pointer" onClick={() => openLightbox(photo)}>
+                  <img src={photo} alt="Photography" className="w-full h-96 object-cover transition-all duration-1000 group-hover:scale-110 group-hover:brightness-110" />
                 </div>
               ))}
             </div>
 
             {/* Row 3: Asymmetric layout */}
             <div className="grid grid-cols-12 gap-6">
-              <div className="col-span-12 md:col-span-5 group relative overflow-hidden rounded-3xl shadow-2xl hover:shadow-[#113F7C]/20 transition-all duration-700 hover:scale-[1.01] border border-[#113F7C]/20 hover:border-[#113F7C]/30">
-                <img src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=600" alt="Coastal Scene" className="w-full h-[500px] object-cover transition-all duration-1000 group-hover:scale-110 group-hover:brightness-110" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500">
-                  <div className="absolute bottom-0 left-0 right-0 p-8 transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500">
-                    <p className="text-white text-2xl font-light mb-2">Coastal Scene</p>
-                    <p className="text-slate-300 text-sm font-light">Where earth meets ocean</p>
-                  </div>
-                </div>
+              <div className="col-span-12 md:col-span-5 group relative overflow-hidden rounded-3xl shadow-2xl hover:shadow-[#113F7C]/20 transition-all duration-700 hover:scale-[1.01] border border-[#113F7C]/20 hover:border-[#113F7C]/30 cursor-pointer" onClick={() => openLightbox("/images/photography/_DSC2039.JPG")}>
+                <img src="/images/photography/_DSC2039.JPG" alt="Photography" className="w-full h-[500px] object-cover transition-all duration-1000 group-hover:scale-110 group-hover:brightness-110" />
               </div>
-              <div className="col-span-12 md:col-span-7 group relative overflow-hidden rounded-3xl shadow-2xl hover:shadow-[#113F7C]/20 transition-all duration-700 hover:scale-[1.01] border border-[#113F7C]/20 hover:border-[#113F7C]/30">
-                <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=900" alt="Valley View" className="w-full h-[500px] object-cover transition-all duration-1000 group-hover:scale-110 group-hover:brightness-110" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500">
-                  <div className="absolute bottom-0 left-0 right-0 p-8 transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500">
-                    <p className="text-white text-2xl font-light mb-2">Valley View</p>
-                    <p className="text-slate-300 text-sm font-light">Vast landscapes unfold</p>
-                  </div>
-                </div>
-                <div className="absolute top-6 right-6 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-x-4 group-hover:translate-x-0 border border-white/20">
-                  <span className="text-white text-xs font-light">PANORAMA</span>
-                </div>
+              <div className="col-span-12 md:col-span-7 group relative overflow-hidden rounded-3xl shadow-2xl hover:shadow-[#113F7C]/20 transition-all duration-700 hover:scale-[1.01] border border-[#113F7C]/20 hover:border-[#113F7C]/30 cursor-pointer" onClick={() => openLightbox("/images/photography/DSC01439.jpeg")}>
+                <img src="/images/photography/DSC01439.jpeg" alt="Photography" className="w-full h-[500px] object-cover transition-all duration-1000 group-hover:scale-110 group-hover:brightness-110" />
               </div>
             </div>
 
             {/* Row 4: Small squares grid */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               {[
-                { url: "https://images.unsplash.com/photo-1519904981063-b0cf448d479e?w=400", caption: "Misty Forest" },
-                { url: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400", caption: "Peak" },
-                { url: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=400", caption: "Trail" },
-                { url: "https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=400", caption: "Lake" }
+                "/images/photography/DSC01448.jpeg",
+                "/images/photography/DSC01455.jpeg",
+                "/images/photography/DSC01485.jpeg",
+                "/images/photography/DSC01306.jpg"
               ].map((photo, idx) => (
-                <div key={idx} className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl hover:shadow-[#113F7C]/20 transition-all duration-500 hover:scale-110 hover:z-10 hover:rotate-2 border border-[#113F7C]/20 hover:border-[#113F7C]/30">
-                  <img src={photo.url} alt={photo.caption} className="w-full aspect-square object-cover transition-all duration-700 group-hover:scale-125" />
-                  <div className="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center">
-                    <p className="text-white text-lg font-light">{photo.caption}</p>
-                  </div>
+                <div key={idx} className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl hover:shadow-[#113F7C]/20 transition-all duration-500 hover:scale-110 hover:z-10 hover:rotate-2 border border-[#113F7C]/20 hover:border-[#113F7C]/30 cursor-pointer" onClick={() => openLightbox(photo)}>
+                  <img src={photo} alt="Photography" className="w-full aspect-square object-cover transition-all duration-700 group-hover:scale-125" />
                 </div>
               ))}
             </div>
@@ -760,24 +731,8 @@ export default function AlexanderOnofrei() {
 
           {/* Interactive Carousel */}
           <div className="relative max-w-5xl mx-auto mt-20">
-            <div className="text-center mb-8">
-            </div>
-            <div className="relative h-[550px] rounded-3xl overflow-hidden shadow-2xl group border border-white/10">
-              <img src={["https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200","https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=1200","https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1200","https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=1200","https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=1200","https://images.unsplash.com/photo-1426604966848-d7adac402bff?w=1200","https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1200","https://images.unsplash.com/photo-1519904981063-b0cf448d479e?w=1200"][currentSlide]} alt="Slide" className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-transparent to-black/30">
-                <div className="absolute bottom-0 left-0 right-0 p-10">
-                  <div className="max-w-2xl">
-                    <p className="text-white text-4xl font-light mb-3">{["Mountain Vista","Forest Path","Sunset Lake","Valley View","Coastal Scene","Northern Lights","Alpine Peak","Misty Forest"][currentSlide]}</p>
-                    <p className="text-slate-300 font-light mb-4">Captured in stunning detail</p>
-                    <div className="flex items-center gap-4">
-                      <div className="h-1 bg-white/30 flex-1 rounded-full overflow-hidden">
-                        <div className="h-full bg-white rounded-full transition-all duration-300" style={{width: `${((currentSlide + 1) / 8) * 100}%`}}></div>
-                      </div>
-                      <span className="text-white text-sm font-light">{currentSlide + 1} / 8</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
+            <div className="relative h-[550px] rounded-3xl overflow-hidden shadow-2xl group border border-white/10 cursor-pointer" onClick={() => openLightbox(["/images/photography/caroussel/DSC01369.jpeg","/images/photography/caroussel/DSC01479.jpeg","/images/photography/caroussel/DSC02584.jpg","/images/photography/caroussel/DSC02593.jpg","/images/photography/caroussel/_DSC2132.JPG","/images/photography/caroussel/_DSC2339.JPG","/images/photography/caroussel/_DSC2503.JPG","/images/photography/caroussel/_DSC2511.JPG"][currentSlide])}>
+              <img src={["/images/photography/caroussel/DSC01369.jpeg","/images/photography/caroussel/DSC01479.jpeg","/images/photography/caroussel/DSC02584.jpg","/images/photography/caroussel/DSC02593.jpg","/images/photography/caroussel/_DSC2132.JPG","/images/photography/caroussel/_DSC2339.JPG","/images/photography/caroussel/_DSC2503.JPG","/images/photography/caroussel/_DSC2511.JPG"][currentSlide]} alt="Slide" className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105" />
               <button onClick={prevSlide} className="absolute left-6 top-1/2 -translate-y-1/2 bg-white/10 backdrop-blur-md hover:bg-white/20 text-white p-4 rounded-full transition-all duration-300 hover:scale-110 hover:-translate-x-1 opacity-0 group-hover:opacity-100 border border-white/20">
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
               </button>
@@ -788,13 +743,27 @@ export default function AlexanderOnofrei() {
             <div className="flex gap-3 mt-8 justify-center overflow-x-auto pb-4 px-4">
               {[0,1,2,3,4,5,6,7].map((idx) => (
                 <button key={idx} onClick={() => setCurrentSlide(idx)} className={`flex-shrink-0 w-24 h-24 rounded-xl overflow-hidden transition-all duration-500 border ${currentSlide === idx ? 'ring-4 ring-[#113F7C] scale-110 shadow-2xl border-[#113F7C]/40' : 'opacity-50 hover:opacity-100 hover:scale-105 grayscale hover:grayscale-0 border-[#113F7C]/20'}`}>
-                  <img src={["https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=200","https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=200","https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=200","https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=200","https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=200","https://images.unsplash.com/photo-1426604966848-d7adac402bff?w=200","https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=200","https://images.unsplash.com/photo-1519904981063-b0cf448d479e?w=200"][idx]} alt="Thumb" className="w-full h-full object-cover" />
+                  <img src={["/images/photography/caroussel/DSC01369.jpeg","/images/photography/caroussel/DSC01479.jpeg","/images/photography/caroussel/DSC02584.jpg","/images/photography/caroussel/DSC02593.jpg","/images/photography/caroussel/_DSC2132.JPG","/images/photography/caroussel/_DSC2339.JPG","/images/photography/caroussel/_DSC2503.JPG","/images/photography/caroussel/_DSC2511.JPG"][idx]} alt="Thumb" className="w-full h-full object-cover" />
                 </button>
               ))}
             </div>
           </div>
         </div>
       </section>
+
+      {/* Lightbox Modal */}
+      {lightboxOpen && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95 backdrop-blur-sm" onClick={closeLightbox}>
+          <button onClick={closeLightbox} className="absolute top-6 right-6 text-white hover:text-[#113F7C] transition-colors duration-300 z-[101]">
+            <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+          <div className="max-w-[95vw] max-h-[95vh] p-4" onClick={(e) => e.stopPropagation()}>
+            <img src={lightboxImage} alt="Full size" className="max-w-full max-h-[90vh] object-contain rounded-2xl shadow-2xl" />
+          </div>
+        </div>
+      )}
 
       {/* Contact */}
       <section id="contact" className="py-16 px-8 relative overflow-hidden z-20">
