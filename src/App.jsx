@@ -7,8 +7,6 @@ export default function AlexanderOnofrei() {
   const [activeSection, setActiveSection] = useState('hero');
   const [currentSlide, setCurrentSlide] = useState(0);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [isVisible, setIsVisible] = useState({});
   const [scrollY, setScrollY] = useState(0);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxImage, setLightboxImage] = useState('');
@@ -30,18 +28,11 @@ export default function AlexanderOnofrei() {
       if (current) setActiveSection(current);
     };
 
-    const handleMouseMove = (e) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-    };
-
     // Intersection Observer for scroll animations
     observerRef.current = new IntersectionObserver(
       (entries) => {
-        entries.forEach((entry) => {
-          setIsVisible((prev) => ({
-            ...prev,
-            [entry.target.id]: entry.isIntersecting
-          }));
+        entries.forEach(() => {
+          // Animation visibility tracking would go here
         });
       },
       { threshold: 0.1 }
@@ -52,11 +43,9 @@ export default function AlexanderOnofrei() {
     });
 
     window.addEventListener('scroll', handleScroll);
-    window.addEventListener('mousemove', handleMouseMove);
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('mousemove', handleMouseMove);
       observerRef.current?.disconnect();
     };
   }, []);
@@ -217,14 +206,14 @@ export default function AlexanderOnofrei() {
             {[
               { Icon: Mail, href: 'mailto:alexonofrei@hotmail.com', label: 'Email', external: false },
               { Icon: Linkedin, href: 'https://www.linkedin.com/in/alexander-onofrei-60885b179', label: 'LinkedIn', external: true }
-            ].map(({ Icon, href, label, external }, idx) => (
+            ].map(({ Icon: IconComponent, href, label, external }, idx) => (
               <a
                 key={idx}
                 href={href}
                 {...(external && { target: '_blank', rel: 'noopener noreferrer' })}
                 className="group relative p-4 bg-white/10 backdrop-blur-xl rounded-2xl hover:bg-white/20 transition-all duration-500 hover:scale-110 hover:-translate-y-1 border border-white/20 hover:border-sage-400/50 shadow-lg hover:shadow-sage-500/50"
               >
-                <Icon size={24} className="text-white group-hover:text-sage-300 transition-colors duration-300" />
+                <IconComponent size={24} className="text-white group-hover:text-sage-300 transition-colors duration-300" />
                 <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-xs text-white/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
                   {label}
                 </span>
