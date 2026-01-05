@@ -18,8 +18,8 @@ export const Navigation = ({ scrolled, activeSection, scrollToSection }) => {
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
           <a href="#hero" className="relative group">
-            <span className="text-2xl font-bold tracking-tighter bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
-              AO
+            <span className="text-2xl font-bold tracking-tighter bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent animate-fade-in-down">
+              Alexander Onofrei
             </span>
             <div className="absolute -inset-2 bg-gradient-to-r from-sage-600 to-sage-700 rounded-lg blur opacity-0 group-hover:opacity-20 transition duration-500"></div>
           </a>

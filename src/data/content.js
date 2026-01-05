@@ -9,17 +9,20 @@ export const personalInfo = {
 };
 
 export const skills = {
-  languages: ['Java', 'Python', 'C++', 'C', 'JavaScript', 'SQL'],
+  languages: ['Java', 'Python', 'C++', 'C', 'JavaScript', 'SQL', 'ProB'],
   frameworks: ['Spring Integration', 'Django', 'Angular', 'React', 'Node.js', 'Docker', 'Kubernetes', 'Git', 'Maven'],
   specializations: [
-    "Software Architecture Design",
-    "Systems Requirements",
-    "Security Risk Assessments (OWASP, GDPR, ISO/IEC 27001)",
-    "Cryptography Protocols (SSL/TLS, SSH, X.509, PQC)",
-    "Distributed Systems Architecture",
-    "Network Protocols (TCP/IP, UDP, HTTPS, SIP)",
-    "Cloud Deployment (Azure DevOps, Kubernetes, Docker)",
-    "Web Services (REST, SOAP, JSON, XML)"
+    "Object-Oriented & Procedural-Oriented architecture",
+    "Highly distributed software design and architecture",
+    "Solution architecture and system integration design",
+    "Security Risk Assessments and Information Security Governance (OWASP, GDPR, ISO/IEC 27001 & 27005)",
+    "Cryptography protocols (SSL/TLS, SSH, S/MIME, X.509), PKIs, Digital Signatures, PQC",
+    "Network protocols (TCP/IP, UDP, HTTPS, SIP, SDP, MSRP, HELD)",
+    "Automation and testing (JUnit, PyTest, Behave, Embunit)",
+    "Messaging interfaces (HTTP/REST, SMS, WebSocket)",
+    "Deployment tools (Azure DevOps, Kubernetes, Docker)",
+    "Web service technologies (REST, SOAP, JSON, XML)",
+    "Software operating systems: LINUX operating systems (UBUNTU, RedHat)"
   ]
 };
 
@@ -30,10 +33,11 @@ export const experiences = [
     period: "Apr 2025 - Present",
     location: "Ottawa, ON",
     points: [
-      "Architect and design scalable air traffic management solutions within the CAATS project",
-      "Collaborate with cross-functional teams to define system requirements for mission-critical aviation systems",
-      "Act as liaison between engineering teams and stakeholders",
-      "Implement Agile Scrum development methodologies"
+      "Architect and design scalable air traffic management solutions within the CAATS (Canadian Automated Air Traffic System) project",
+      "Collaborate with cross-functional teams to define system requirements, interfaces, and technical specifications for mission-critical aviation systems",
+      "Act as a liaison between engineering teams and stakeholders to ensure successful integration and deployment of new features",
+      "Architect test design for project solutions",
+      "Implement Agile Scrum development methodologies for all prototype development tasks"
     ]
   },
   {
@@ -56,10 +60,10 @@ export const experiences = [
     period: "Sept 2023 - Mar 2025",
     location: "Ottawa, ON",
     points: [
-      "Designed secure software systems with security architecture aligned with OWASP, GDPR, and NIST standards",
-      "Managed client requirements and collaborated with DevOps teams",
-      "Developed software components for commercial satellite imagery systems (CSIAPS) using Java (Springboot)",
-      "Deployed and managed Tomcat, Wildfly and GitLab servers"
+      "Design secure software systems by developing security architecture, conducting risk assessments, and implementing controls aligned with OWASP, GDPR, and NIST standards to protect against threats and to reduce regulatory compliance",
+      "Manage client requirements and worked with development teams, DevOps, and other stakeholders to integrate security best practices into the software lifecycle",
+      "Design, develop, and test software components that support commercial satellite imagery and its related acquisition planning systems (CSIAPS) with the use of programming languages such as Java (Spring), Python, C++, build automation tools such as MAVEN and geospatial data handling with GDAL",
+      "Deploy and manage Tomcat, Wildfly and Gitlab servers to support different process environments"
     ]
   },
   {
@@ -68,9 +72,9 @@ export const experiences = [
     period: "Jan 2021 - Aug 2022",
     location: "Gatineau, QC",
     points: [
-      "Designed SMS prototype for next-generation 911 communication with SIP, SDP, and MSRP protocols",
-      "Built full-stack cloud simulators for distributed systems",
-      "Containerized and deployed applications using Azure DevOps, Kubernetes, and Docker"
+      "Design, develop, and test SMS prototype supporting next-generation 911 SMS communication applications, incorporating SIP, SDP, and MSRP protocols. Utilized Spring Boot, Redis, C++, and Erlang",
+      "Design, develop, and test full-stack cloud simulators for distributed systems, encouraging UML design, API design, endpoint design and front-end design. Employed Spring Boot, Angular, and MongoDB",
+      "Containerize and deploy full-stack applications and prototypes in a cloud environment using Azure DevOps, Kubernetes, and Docker"
     ]
   },
   {
